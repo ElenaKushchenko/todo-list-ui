@@ -1,0 +1,16 @@
+<div cdkDropList class="todo-project-list" (cdkDropListDropped)="drop($event)">
+  <div class="todo-project-item" *ngFor="let movie of movies" cdkDrag>
+    <div class="todo-project-item-label">
+      <mat-icon color="primary">label</mat-icon>
+      {{movie}}
+    </div>
+    <div class="todo-project-item-controls">
+      <mat-icon class="todo-project-item-action">edit</mat-icon>
+      <mat-icon class="todo-project-item-action">delete</mat-icon>
+    </div>
+  </div>
+</div>
+
+<button mat-icon-button routerLink="">
+  <mat-icon color="accent" style="font-size: 30px">add</mat-icon>
+</button>

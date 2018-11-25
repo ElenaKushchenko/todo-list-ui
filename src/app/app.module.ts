@@ -7,12 +7,14 @@ import {AppComponent} from './app.component';
 import {MaterialModule} from "./material/material.module";
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProjectsListComponent } from './projects-list/projects-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProjectsListComponent
   ],
   imports: [
     BrowserModule,

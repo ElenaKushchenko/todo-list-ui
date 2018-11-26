@@ -1,15 +1,14 @@
-::-webkit-scrollbar {
-  width: 5px;
+/* Common styles */
 
-  &-track {
-    background: #f1f1f1;
-  }
+.todo-container {
+  height: 100%;
+  width: 100%;
+}
 
-  &-thumb {
-    background: #888;
+.todo-scrollable-y {
+  overflow-y: auto;
+}
 
-    &:hover {
-      background: #555;
-    }
-  }
+.todo-scrollable-x {
+  overflow-x: auto;
 }

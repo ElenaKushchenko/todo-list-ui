@@ -1,7 +1,5 @@
-.todo-sidenav-container {
-  position: absolute;
-  top: 64px;
-  bottom: 0;
-  left: 0;
-  right: 0;
+@import "../app.component";
+
+:host {
+  @extend .todo-container
 }

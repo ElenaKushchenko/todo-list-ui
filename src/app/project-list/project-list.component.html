@@ -10,7 +10,7 @@
         </div>
         <div fxFlex="0 0 auto" fxLayoutAlign="start center" class="todo-project-item-controls">
           <mat-icon class="todo-project-item-action">edit</mat-icon>
-          <mat-icon class="todo-project-item-action">delete_outline</mat-icon>
+          <mat-icon class="todo-project-item-action" (click)="openConfirmationDialog()">delete_outline</mat-icon>
         </div>
       </div>
     </div>

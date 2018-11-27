@@ -9,13 +9,15 @@ import {HeaderComponent} from './header/header.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProjectListComponent} from './project-list/project-list.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DashboardComponent,
-    ProjectListComponent
+    ProjectListComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,10 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ConfirmationDialogComponent
+  ]
 })
 export class AppModule {
 }

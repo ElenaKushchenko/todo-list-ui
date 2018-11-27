@@ -9,7 +9,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag
 export class TaskBoardComponent implements OnInit {
   toDo = [
     'Get to work',
-    'Pick up groceries',
+    'Pick up groceries Pick up groceries Pick up groceries Pick up groceries Pick up groceries',
     'Go home',
     'Fall asleep'
   ];

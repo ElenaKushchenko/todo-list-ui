@@ -26,7 +26,6 @@
   &-item {
     padding: 10px;
     margin: 10px 0;
-    border: solid 1px #ccc;
     cursor: move;
     background: white;
     font-size: 14px;
@@ -35,6 +34,24 @@
       box-shadow: 0 3px 5px -3px rgba(0, 0, 0, 0.2),
       0 5px 10px 1px rgba(0, 0, 0, 0.14),
       0 2px 14px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    &-text {
+      font-size: 20px;
+    }
+
+    &-footer {
+      margin-top: 20px;
+    }
+
+    &-action {
+      visibility: hidden;
+      cursor: pointer;
+      color: grey;
+    }
+
+    &:hover > &-footer > &-controls > &-action {
+      visibility: visible;
     }
   }
 }

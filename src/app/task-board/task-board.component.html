@@ -11,8 +11,15 @@
       [cdkDropListConnectedTo]="[progressList, doneList]"
       class="todo-container"
       (cdkDropListDropped)="drop($event)">
-      <div class="todo-task-board-item" *ngFor="let item of toDo" cdkDrag>
-        {{item}}
+      <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of toDo" cdkDrag>
+        <span class="todo-task-board-item-text">{{item}}</span>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
+          <span>2018-01-01</span>
+          <div class="todo-task-board-item-controls">
+            <mat-icon class="todo-task-board-item-action">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openConfirmationDialog()">delete_outline</mat-icon>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -28,8 +35,15 @@
       [cdkDropListConnectedTo]="[todoList, doneList]"
       class="todo-container"
       (cdkDropListDropped)="drop($event)">
-      <div class="todo-task-board-item" *ngFor="let item of inProgress" cdkDrag>
-        {{item}}
+      <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of inProgress" cdkDrag>
+        <span class="todo-task-board-item-text">{{item}}</span>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
+          <span>2018-01-01</span>
+          <div class="todo-task-board-item-controls">
+            <mat-icon class="todo-task-board-item-action">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openConfirmationDialog()">delete_outline</mat-icon>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -45,8 +59,15 @@
       [cdkDropListConnectedTo]="[todoList, progressList]"
       class="todo-container"
       (cdkDropListDropped)="drop($event)">
-      <div class="todo-task-board-item" *ngFor="let item of done" cdkDrag>
-        {{item}}
+      <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of done" cdkDrag>
+        <span class="todo-task-board-item-text">{{item}}</span>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
+          <span>2018-01-01</span>
+          <div class="todo-task-board-item-controls">
+            <mat-icon class="todo-task-board-item-action">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openConfirmationDialog()">delete_outline</mat-icon>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -12,7 +12,7 @@ export class ProjectService {
   constructor(private http: HttpClient) {
   }
 
-  getProjects(): Observable<ShortProject[]> {
+  getAll(): Observable<ShortProject[]> {
     return this.http
       .get<Project[]>(this.apiBase)
       .pipe(
@@ -20,7 +20,7 @@ export class ProjectService {
       );
   }
 
-  getProject(id: string): Observable<Project> {
+  get(id: string): Observable<Project> {
     return this.http
       .get<Project>(`${this.apiBase}/${id}`)
       .pipe(

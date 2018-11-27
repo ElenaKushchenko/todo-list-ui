@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {
   MatButtonModule,
-  MatDialogModule,
-  MatIconModule,
+  MatDialogModule, MatFormFieldModule,
+  MatIconModule, MatInputModule,
   MatListModule,
   MatSidenavModule,
   MatToolbarModule
@@ -19,7 +19,9 @@ import {A11yModule} from '@angular/cdk/a11y'
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     DragDropModule,
@@ -29,7 +31,9 @@ import {A11yModule} from '@angular/cdk/a11y'
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
 })
 export class MaterialModule {

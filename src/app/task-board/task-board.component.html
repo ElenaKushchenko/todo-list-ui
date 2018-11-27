@@ -15,8 +15,8 @@
         <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
           <span>2018-01-01</span>
           <div class="todo-task-board-item-controls">
-            <mat-icon class="todo-task-board-item-action">edit</mat-icon>
-            <mat-icon class="todo-task-board-item-action" (click)="openConfirmationDialog()">delete_outline</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog('1')">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog('1')">delete_outline</mat-icon>
           </div>
         </div>
       </div>
@@ -38,8 +38,8 @@
         <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
           <span>2018-01-01</span>
           <div class="todo-task-board-item-controls">
-            <mat-icon class="todo-task-board-item-action">edit</mat-icon>
-            <mat-icon class="todo-task-board-item-action" (click)="openConfirmationDialog()">delete_outline</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog('1')">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog('1')">delete_outline</mat-icon>
           </div>
         </div>
       </div>
@@ -61,15 +61,15 @@
         <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
           <span>2018-01-01</span>
           <div class="todo-task-board-item-controls">
-            <mat-icon class="todo-task-board-item-action">edit</mat-icon>
-            <mat-icon class="todo-task-board-item-action" (click)="openConfirmationDialog()">delete_outline</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog('1')">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog('1')">delete_outline</mat-icon>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <button mat-icon-button class="todo-task-board-item-new">
+  <button mat-icon-button class="todo-task-board-item-new" (click)="openTaskDialog()">
     <mat-icon color="warn" class="todo-task-board-item-new-icon">add_circle</mat-icon>
   </button>
 

@@ -9,10 +9,12 @@ import {HeaderComponent} from './header/header.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProjectListComponent} from './project-list/project-list.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationDialogComponent} from './dialog/confirmation-dialog/confirmation-dialog.component';
 import {TaskBoardComponent} from "./task-board/task-board.component";
 import {ProjectService} from './service/project.service';
 import {HttpClientModule} from '@angular/common/http';
+import {ProjectDialogComponent} from './dialog/project-dialog/project-dialog.component';
+import {TaskDialogComponent} from './dialog/task-dialog/task-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {HttpClientModule} from '@angular/common/http';
     DashboardComponent,
     ProjectListComponent,
     TaskBoardComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ProjectDialogComponent,
+    TaskDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ProjectDialogComponent,
+    TaskDialogComponent
   ]
 })
 export class AppModule {

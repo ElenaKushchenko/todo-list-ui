@@ -2,7 +2,7 @@
 @import "../app.theme";
 
 :host {
-  @extend .todo-container
+  min-height: 100%;
 }
 
 .todo-task-board {

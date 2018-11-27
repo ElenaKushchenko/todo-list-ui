@@ -1,4 +1,5 @@
 @import "../app.component";
+@import "../app.theme";
 
 :host {
   @extend .todo-container
@@ -16,9 +17,12 @@
 
     &-label {
       font-size: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+
+      & > span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     &-action {
@@ -31,7 +35,7 @@
     }
 
     &:hover {
-      background-color: #dedede;
+      background-color: mat-color($mat-gray, 200);
     }
 
     &:hover > &-controls > &-action {

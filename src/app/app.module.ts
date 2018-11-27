@@ -10,6 +10,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {ProjectListComponent} from './project-list/project-list.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-dialog.component';
+import {TaskBoardComponent} from "./task-board/task-board.component";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-di
     HeaderComponent,
     DashboardComponent,
     ProjectListComponent,
+    TaskBoardComponent,
     ConfirmationDialogComponent
   ],
   imports: [

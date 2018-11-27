@@ -1,9 +1,6 @@
-import {Task} from './task';
-
-export class Project {
+export class ShortProject {
   constructor(public name: string,
               public order: number,
-              public tasks?: Array<Task>,
               public id?: string) {
   }
 }

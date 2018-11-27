@@ -11,6 +11,8 @@ import {ProjectListComponent} from './project-list/project-list.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-dialog.component';
 import {TaskBoardComponent} from "./task-board/task-board.component";
+import {ProjectService} from './service/project.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,13 @@ import {TaskBoardComponent} from "./task-board/task-board.component";
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     FlexLayoutModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [
+    ProjectService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmationDialogComponent

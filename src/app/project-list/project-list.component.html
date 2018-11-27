@@ -1,16 +1,24 @@
-<div cdkDropList class="todo-project-list" (cdkDropListDropped)="drop($event)">
-  <div class="todo-project-item" *ngFor="let movie of movies" cdkDrag>
-    <div class="todo-project-item-label">
-      <mat-icon color="primary">label</mat-icon>
-      {{movie}}
-    </div>
-    <div class="todo-project-item-controls">
-      <mat-icon class="todo-project-item-action">edit</mat-icon>
-      <mat-icon class="todo-project-item-action">delete</mat-icon>
-    </div>
-  </div>
-</div>
+<div fxFlex="column" class="todo-project-list">
 
-<button mat-icon-button routerLink="">
-  <mat-icon color="accent" style="font-size: 30px">add</mat-icon>
-</button>
+  <div cdkDropList (cdkDropListDropped)="drop($event)">
+
+    <div *ngFor="let movie of movies" cdkDrag>
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-project-item">
+        <div fxLayoutAlign="start center" class="todo-project-item-label">
+          <mat-icon color="accent">label_important</mat-icon>
+          <span>{{movie}}</span>
+        </div>
+        <div fxFlex="0 0 auto" fxLayoutAlign="start center" class="todo-project-item-controls">
+          <mat-icon class="todo-project-item-action">edit</mat-icon>
+          <mat-icon class="todo-project-item-action">delete_outline</mat-icon>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button mat-icon-button class="todo-project-add">
+    <mat-icon class="todo-project-add-icon" color="primary">add</mat-icon>
+  </button>
+
+</div>

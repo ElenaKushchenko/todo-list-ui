@@ -1,15 +1,14 @@
 <div fxLayout="row" fxLayoutAlign="space-around stretch" class="todo-container todo-task-board">
 
-  <div fxFlex="30">
-    <div class="todo-task-board-list-label todo">
+  <div fxLayout="column" fxFlex="30">
+    <div fxFlex="0 0 auto" class="todo-task-board-list-label todo">
       <span class="mat-title">To do</span>
     </div>
-    <div
+    <div fxFlex="1 1 auto"
       cdkDropList
       #todoList="cdkDropList"
       [cdkDropListData]="toDo"
       [cdkDropListConnectedTo]="[progressList, doneList]"
-      class="todo-container"
       (cdkDropListDropped)="drop($event)">
       <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of toDo" cdkDrag>
         <span class="todo-task-board-item-text">{{item}}</span>
@@ -24,16 +23,15 @@
     </div>
   </div>
 
-  <div fxFlex="30">
-    <div class="todo-task-board-list-label progress">
+  <div fxLayout="column" fxFlex="30">
+    <div fxFlex="0 0 auto" class="todo-task-board-list-label progress">
       <span class="mat-title">In progress</span>
     </div>
-    <div
+    <div fxFlex="1 1 auto"
       cdkDropList
       #progressList="cdkDropList"
       [cdkDropListData]="inProgress"
       [cdkDropListConnectedTo]="[todoList, doneList]"
-      class="todo-container"
       (cdkDropListDropped)="drop($event)">
       <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of inProgress" cdkDrag>
         <span class="todo-task-board-item-text">{{item}}</span>
@@ -48,16 +46,15 @@
     </div>
   </div>
 
-  <div fxFlex="30">
-    <div class="todo-task-board-list-label done">
+  <div fxLayout="column" fxFlex="30">
+    <div fxFlex="0 0 auto" class="todo-task-board-list-label done">
       <span class="mat-title">Done</span>
     </div>
-    <div
+    <div fxFlex="1 1 auto"
       cdkDropList
       #doneList="cdkDropList"
       [cdkDropListData]="done"
       [cdkDropListConnectedTo]="[todoList, progressList]"
-      class="todo-container"
       (cdkDropListDropped)="drop($event)">
       <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of done" cdkDrag>
         <span class="todo-task-board-item-text">{{item}}</span>

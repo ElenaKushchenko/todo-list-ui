@@ -25,6 +25,9 @@ export class ProjectListComponent implements OnInit {
 
   onDrop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.projects, event.previousIndex, event.currentIndex);
+    this.projects.forEach((it, ix) => {
+      it.order = ix
+    });
     this.updateProjects(this.projects);
   }
 
@@ -43,9 +46,12 @@ export class ProjectListComponent implements OnInit {
       .afterClosed()
       .subscribe(result => {
         if (!!result) {
-          project == null
-            ? this.createProject(result)
-            : this.updateProject(result)
+          if (project == null) {
+            result.order = this.projects.length;
+            this.createProject(result)
+          } else {
+            this.updateProject(result)
+          }
         }
       });
   }
@@ -59,7 +65,8 @@ export class ProjectListComponent implements OnInit {
 
   private createProject(project: Project) {
     this.projectService.create(project)
-      .subscribe(() => {
+      .subscribe(data => {
+        project.id = data;
         this.projects.push(project)
       });
   }
@@ -75,10 +82,8 @@ export class ProjectListComponent implements OnInit {
     const id = project.id;
     this.projectService.update(id, project)
       .subscribe(() => {
-        // this.projects = this.projects.filter(it => it.id != id);
-        this.projects[0] = project;
-        // this.projects.push(project);
-        // this.sortProjects()
+        const ix = this.projects.findIndex(it => it.id == id);
+        this.projects[ix] = project;
       });
   }
 

@@ -36,9 +36,9 @@ export class ProjectService {
       );
   }
 
-  create(project: Project): Observable<String> {
+  create(project: Project): Observable<string> {
     return this.http
-      .post<String>(this.apiBase, project)
+      .post<string>(this.apiBase, project, {responseType: 'text'})
       .pipe(
         catchError(this.handleError)
       );
@@ -52,9 +52,9 @@ export class ProjectService {
       );
   }
 
-  update(id: string, book: Project) {
+  update(id: string, project: Project) {
     return this.http
-      .put(`${this.apiBase}/${id}`, book)
+      .put(`${this.apiBase}/${id}`, project)
       .pipe(
         catchError(this.handleError)
       );

@@ -12,9 +12,9 @@ export class ProjectService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<ShortProject[]> {
+  getAll(): Observable<Array<ShortProject>> {
     return this.http
-      .get<Project[]>(this.apiBase)
+      .get<Array<ShortProject>>(this.apiBase)
       .pipe(
         catchError(this.handleError)
       );
@@ -30,19 +30,23 @@ export class ProjectService {
 
   delete(id: string) {
     return this.http
-      .delete<Project>(`${this.apiBase}/${id}`)
+      .delete(`${this.apiBase}/${id}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  create(book: Project) {
-    const headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-
+  create(project: Project): Observable<String> {
     return this.http
-      .post<Project>(this.apiBase, book)
+      .post<String>(this.apiBase, project)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  updateAll(projects: Array<ShortProject>) {
+    return this.http
+      .put(this.apiBase, projects)
       .pipe(
         catchError(this.handleError)
       );
@@ -50,7 +54,7 @@ export class ProjectService {
 
   update(id: string, book: Project) {
     return this.http
-      .put<Project>(`${this.apiBase}/${id}`, book)
+      .put(`${this.apiBase}/${id}`, book)
       .pipe(
         catchError(this.handleError)
       );

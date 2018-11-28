@@ -15,6 +15,7 @@ import {ProjectService} from './service/project.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ProjectDialogComponent} from './dialog/project-dialog/project-dialog.component';
 import {TaskDialogComponent} from './dialog/task-dialog/task-dialog.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {TaskDialogComponent} from './dialog/task-dialog/task-dialog.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     FlexLayoutModule,
     MaterialModule
   ],

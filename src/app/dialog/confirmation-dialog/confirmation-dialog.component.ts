@@ -11,7 +11,7 @@ export class ConfirmationDialogComponent {
   constructor(public dialogRef: MatDialogRef<ConfirmationDialogComponent>) {
   }
 
-  close(isConfirmed: boolean) {
+  onClose(isConfirmed: boolean) {
     this.dialogRef.close(isConfirmed);
   }
 }

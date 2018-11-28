@@ -1,11 +1,11 @@
 <div mat-dialog-content class="todo-project-dialog-container">
   <form fxLayout="column">
     <mat-form-field>
-      <input matInput placeholder="Project name">
+      <input matInput name="name" [(ngModel)]="project.name" placeholder="Project name">
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button color="warn">Cancel</button>
-  <button mat-button color="primary">Ok</button>
+  <button mat-button color="warn" (click)="onClose()">Cancel</button>
+  <button mat-button color="primary" (click)="onClose(project)">Ok</button>
 </div>

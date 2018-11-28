@@ -12,7 +12,6 @@ export class ProjectDialogComponent {
   constructor(public dialogRef: MatDialogRef<ProjectDialogComponent>,
               @Inject(MAT_DIALOG_DATA)
               public project?: ShortProject) {
-    console.log(project)
   }
 
   onClose(project?: ShortProject) {

@@ -6,6 +6,7 @@ import {ShortProject} from '../model/short-project';
 import {ProjectService} from '../service/project.service';
 import {Project} from "../model/project";
 import {ProjectDialogComponent} from "../dialog/project-dialog/project-dialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'todo-project-list',
@@ -14,13 +15,24 @@ import {ProjectDialogComponent} from "../dialog/project-dialog/project-dialog.co
 })
 export class ProjectListComponent implements OnInit {
   projects: Array<ShortProject>;
+  selected: ShortProject;
 
   constructor(private dialog: MatDialog,
+              private router: Router,
               private projectService: ProjectService) {
   }
 
   ngOnInit() {
-    this.getProjects()
+    this.getProjects();
+  }
+
+  selectProject(project?: ShortProject) {
+    if (!!project) {
+      this.selected = project;
+      this.router.navigate(['/projects', project.id])
+    } else {
+      this.router.navigate(['/projects'])
+    }
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
@@ -59,7 +71,8 @@ export class ProjectListComponent implements OnInit {
   private getProjects() {
     this.projectService.getAll()
       .subscribe(data => {
-        this.projects = data
+        this.projects = data;
+        if (this.projects.length) this.selectProject(this.projects[0])
       });
   }
 
@@ -67,7 +80,8 @@ export class ProjectListComponent implements OnInit {
     this.projectService.create(project)
       .subscribe(data => {
         project.id = data;
-        this.projects.push(project)
+        this.projects.push(project);
+        this.selectProject(project)
       });
   }
 
@@ -90,7 +104,11 @@ export class ProjectListComponent implements OnInit {
   private deleteProject(id: string) {
     this.projectService.delete(id)
       .subscribe(() => {
-        this.projects = this.projects.filter(it => it.id != id)
+        const ix = this.projects.findIndex(it => it.id == id);
+        this.projects = this.projects.filter(it => it.id != id);
+        if (ix == this.projects.length) {
+          this.selectProject(this.projects[this.projects.length - 1])
+        }
       });
   }
 

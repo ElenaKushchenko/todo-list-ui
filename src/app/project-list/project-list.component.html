@@ -3,9 +3,11 @@
   <div cdkDropList (cdkDropListDropped)="onDrop($event)">
 
     <div *ngFor="let project of projects" cdkDrag>
-      <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-project-item">
+      <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-project-item"
+           [ngClass]="{'todo-project-item-selected': project.id == selected.id}"
+           (click)="selectProject(project)">
         <div fxLayoutAlign="start center" class="todo-project-item-label">
-          <mat-icon color="accent">label_important</mat-icon>
+          <mat-icon [color]="project.id == selected.id ? 'warn' : 'accent'">label_important</mat-icon>
           <span>{{project.name}}</span>
         </div>
         <div fxFlex="0 0 auto" fxLayoutAlign="start center" class="todo-project-item-controls">

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
-import {ConfirmationDialogComponent} from "../dialog/confirmation-dialog/confirmation-dialog.component";
-import {MatDialog} from "@angular/material";
-import {TaskDialogComponent} from "../dialog/task-dialog/task-dialog.component";
-import {NavigationEnd, Router} from "@angular/router";
-import {Task} from "../model/task";
-import {ProjectService} from "../service/project.service";
-import {Project} from "../model/project";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {ConfirmationDialogComponent} from '../dialog/confirmation-dialog/confirmation-dialog.component';
+import {MatDialog} from '@angular/material';
+import {TaskDialogComponent} from '../dialog/task-dialog/task-dialog.component';
+import {NavigationEnd, Router} from '@angular/router';
+import {Task} from '../model/task';
+import {ProjectService} from '../service/project.service';
+import {Project} from '../model/project';
 
 @Component({
   selector: 'todo-task-board',
@@ -14,26 +14,6 @@ import {Project} from "../model/project";
   styleUrls: ['./task-board.component.scss']
 })
 export class TaskBoardComponent implements OnInit {
-  // toDo = [
-  //   'Get to work',
-  //   'Pick up groceries Pick up groceries Pick up groceries Pick up groceries Pick up groceries',
-  //   'Go home',
-  //   'Fall asleep'
-  // ];
-  //
-  // inProgress = [
-  //   'Get up',
-  //   'Brush teeth'
-  // ];
-  //
-  // done = [
-  //   'Get up',
-  //   'Brush teeth',
-  //   'Take a shower',
-  //   'Check e-mail',
-  //   'Walk dog'
-  // ];
-
   project: Project;
   toDo: Array<Task>;
   inProgress: Array<Task>;
@@ -54,10 +34,10 @@ export class TaskBoardComponent implements OnInit {
     //
     //   }
     // });
-    this.getProject('5bff2ead57619219f469ae98')
+    this.getProject('5bff2ead57619219f469ae98');
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<string[]>, status: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -67,7 +47,11 @@ export class TaskBoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      event.container.data[event.currentIndex].status = status;
     }
+
+    this.aggregateTasks(this.toDo, this.inProgress, this.done);
+    this.updateProject(this.project);
   }
 
   openDeleteDialog(task: Task) {
@@ -75,9 +59,8 @@ export class TaskBoardComponent implements OnInit {
       .afterClosed()
       .subscribe(data => {
         if (data) {
-          this.project.tasks = this.project.tasks.filter(it => it != task);
+          this.project.tasks = this.project.tasks.filter(it => it !== task);
           this.updateProject(this.project);
-          this.splitTasksByStatus(this.project)
         }
       });
   }
@@ -90,21 +73,22 @@ export class TaskBoardComponent implements OnInit {
           if (task == null) {
             data.status = 'TO_DO';
             data.order = this.project.tasks.length;
-            this.project.tasks.push(data)
+            this.project.tasks.push(data);
           } else {
-            let ix = this.project.tasks.findIndex(it => it == task);
-            this.project[ix] = data
+            const ix = this.project.tasks.findIndex(it => it === task);
+            this.project.tasks[ix] = data;
           }
-          this.updateProject(this.project)
+          this.updateProject(this.project);
         }
-      })
+      });
   }
 
   private getProject(id: string) {
     this.projectService.get(id)
       .subscribe(data => {
+        this.sortTasks(data.tasks);
         this.project = data;
-        this.splitTasksByStatus(data)
+        this.splitTasks(data);
       });
   }
 
@@ -112,15 +96,33 @@ export class TaskBoardComponent implements OnInit {
     const id = project.id;
     this.projectService.update(id, project)
       .subscribe(() => {
+        this.sortTasks(project.tasks);
         this.project = project;
-        this.splitTasksByStatus(project)
+        this.splitTasks(project);
       });
   }
 
-  private splitTasksByStatus(project: Project) {
-    this.toDo = project.tasks.filter(it => it.status = 'TO_DO');
-    this.inProgress = project.tasks.filter(it => it.status = 'IN_PROGRESS');
-    this.done = project.tasks.filter(it => it.status = 'DONE')
+  private splitTasks(project: Project) {
+    this.toDo = project.tasks.filter(it => it.status === 'TO_DO');
+    this.inProgress = project.tasks.filter(it => it.status === 'IN_PROGRESS');
+    this.done = project.tasks.filter(it => it.status === 'DONE');
+  }
+
+  private aggregateTasks(toDoTasks: Array<Task>, progressTasks: Array<Task>, doneTasks: Array<Task>) {
+    this.project.tasks = [];
+
+    toDoTasks.forEach((it, ix) => {
+      it.order = ix;
+      this.project.tasks.push(it);
+    });
+    progressTasks.forEach((it, ix) => {
+      it.order = ix;
+      this.project.tasks.push(it);
+    });
+    doneTasks.forEach((it, ix) => {
+      it.order = ix;
+      this.project.tasks.push(it);
+    });
   }
 
   private sortTasks(taskList: Array<Task>) {

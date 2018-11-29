@@ -37,8 +37,9 @@ export class ProjectService {
   }
 
   create(project: Project): Observable<string> {
+    const options = {responseType: 'text' as 'json'};
     return this.http
-      .post<string>(this.apiBase, project, {responseType: 'text'})
+      .post<string>(this.apiBase, project, options)
       .pipe(
         catchError(this.handleError)
       );

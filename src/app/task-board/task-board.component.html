@@ -9,14 +9,14 @@
       #todoList="cdkDropList"
       [cdkDropListData]="toDo"
       [cdkDropListConnectedTo]="[progressList, doneList]"
-      (cdkDropListDropped)="drop($event)">
-      <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of toDo" cdkDrag>
-        <span class="todo-task-board-item-text">{{item}}</span>
+      (cdkDropListDropped)="drop($event, 'TO_DO')">
+      <div fxLayout="column" class="todo-task-board-item" *ngFor="let task of toDo" cdkDrag>
+        <span class="todo-task-board-item-text">{{task.text}}</span>
         <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
-          <span>2018-01-01</span>
+          <span>{{task.deadline | date:'yyyy-MM-dd HH:mm'}}</span>
           <div class="todo-task-board-item-controls">
-            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog('1')">edit</mat-icon>
-            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog('1')">delete_outline</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog(task)">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog(task)">delete_outline</mat-icon>
           </div>
         </div>
       </div>
@@ -32,14 +32,14 @@
       #progressList="cdkDropList"
       [cdkDropListData]="inProgress"
       [cdkDropListConnectedTo]="[todoList, doneList]"
-      (cdkDropListDropped)="drop($event)">
-      <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of inProgress" cdkDrag>
-        <span class="todo-task-board-item-text">{{item}}</span>
+      (cdkDropListDropped)="drop($event, 'IN_PROGRESS')">
+      <div fxLayout="column" class="todo-task-board-item" *ngFor="let task of inProgress" cdkDrag>
+        <span class="todo-task-board-item-text">{{task.text}}</span>
         <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
-          <span>2018-01-01</span>
+          <span>{{task.deadline | date:'yyyy-MM-dd HH:mm'}}</span>
           <div class="todo-task-board-item-controls">
-            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog('1')">edit</mat-icon>
-            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog('1')">delete_outline</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog(task)">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog(task)">delete_outline</mat-icon>
           </div>
         </div>
       </div>
@@ -55,14 +55,14 @@
       #doneList="cdkDropList"
       [cdkDropListData]="done"
       [cdkDropListConnectedTo]="[todoList, progressList]"
-      (cdkDropListDropped)="drop($event)">
-      <div fxLayout="column" class="todo-task-board-item" *ngFor="let item of done" cdkDrag>
-        <span class="todo-task-board-item-text">{{item}}</span>
+      (cdkDropListDropped)="drop($event, 'DONE')">
+      <div fxLayout="column" class="todo-task-board-item" *ngFor="let task of done" cdkDrag>
+        <span class="todo-task-board-item-text">{{task.text}}</span>
         <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-task-board-item-footer">
-          <span>2018-01-01</span>
+          <span>{{task.deadline | date:'yyyy-MM-dd HH:mm'}}</span>
           <div class="todo-task-board-item-controls">
-            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog('1')">edit</mat-icon>
-            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog('1')">delete_outline</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openTaskDialog(task)">edit</mat-icon>
+            <mat-icon class="todo-task-board-item-action" (click)="openDeleteDialog(task)">delete_outline</mat-icon>
           </div>
         </div>
       </div>

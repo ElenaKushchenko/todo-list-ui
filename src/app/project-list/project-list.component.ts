@@ -17,9 +17,9 @@ export class ProjectListComponent implements OnInit {
   projects: Array<ShortProject>;
   selected: ShortProject;
 
-  constructor(private dialog: MatDialog,
-              private router: Router,
-              private projectService: ProjectService) {
+  constructor(private router: Router,
+              private projectService: ProjectService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -46,8 +46,8 @@ export class ProjectListComponent implements OnInit {
   openDeleteDialog(id: string) {
     this.dialog.open(ConfirmationDialogComponent)
       .afterClosed()
-      .subscribe(result => {
-        if (result) {
+      .subscribe(data => {
+        if (data) {
           this.deleteProject(id)
         }
       });
@@ -56,13 +56,13 @@ export class ProjectListComponent implements OnInit {
   openProjectDialog(project?: ShortProject) {
     this.dialog.open(ProjectDialogComponent, {data: Object.assign({}, project)})
       .afterClosed()
-      .subscribe(result => {
-        if (!!result) {
+      .subscribe(data => {
+        if (!!data) {
           if (project == null) {
-            result.order = this.projects.length;
-            this.createProject(result)
+            data.order = this.projects.length;
+            this.createProject(data)
           } else {
-            this.updateProject(result)
+            this.updateProject(data)
           }
         }
       });

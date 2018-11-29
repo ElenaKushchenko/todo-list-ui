@@ -4,7 +4,7 @@
       <textarea matInput name="task" [(ngModel)]="task.text" placeholder="What do you want to do?"></textarea>
     </mat-form-field>
     <mat-form-field>
-      <input matInput name="deadline" type="datetime-local" [(ngModel)]="task.deadline">
+      <input matInput name="deadline" type="datetime-local" [(ngModel)]="task.deadline" max="2150-01-01">
     </mat-form-field>
   </form>
 </div>

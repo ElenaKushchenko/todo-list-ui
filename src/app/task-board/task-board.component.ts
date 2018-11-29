@@ -25,16 +25,20 @@ export class TaskBoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.router.events.subscribe(path => {
-    //   if (path instanceof NavigationEnd) {
-    //     let url = path.url;
-    //     let projectId =
-    //     path.url.substr(path.url.lastIndexOf('/'))
-    //       console.log(route);
-    //
-    //   }
-    // });
-    this.getProject('5bff2ead57619219f469ae98');
+    this.router.events.subscribe(path => {
+      if (path instanceof NavigationEnd) {
+        const url = path.url;
+        if (RegExp('/projects/\.\+', 'ig').test(url)) {
+          const projectId = path.url.substr(path.url.lastIndexOf('/'));
+          this.getProject(projectId);
+        } else {
+          this.project = {};
+          this.toDo = {};
+          this.inProgress = {};
+          this.done = {};
+        }
+      }
+    });
   }
 
   drop(event: CdkDragDrop<string[]>, status: string) {

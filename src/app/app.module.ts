@@ -12,10 +12,17 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {ConfirmationDialogComponent} from './dialog/confirmation-dialog/confirmation-dialog.component';
 import {TaskBoardComponent} from "./task-board/task-board.component";
 import {ProjectService} from './service/project.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProjectDialogComponent} from './dialog/project-dialog/project-dialog.component';
 import {TaskDialogComponent} from './dialog/task-dialog/task-dialog.component';
 import {FormsModule} from "@angular/forms";
+import {UserService} from "./service/user.service";
+import {AuthService} from "./service/auth.service";
+import {JwtInterceptor} from "./util/jwt.interceptor";
+import {ErrorInterceptor} from "./util/error.interceptor";
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
+import {AuthGuard} from "./guard/auth.guard";
 
 @NgModule({
   declarations: [
@@ -26,7 +33,9 @@ import {FormsModule} from "@angular/forms";
     TaskBoardComponent,
     ConfirmationDialogComponent,
     ProjectDialogComponent,
-    TaskDialogComponent
+    TaskDialogComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,12 @@ import {FormsModule} from "@angular/forms";
     MaterialModule
   ],
   providers: [
-    ProjectService
+    ProjectService,
+    UserService,
+    AuthService,
+    AuthGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
   entryComponents: [

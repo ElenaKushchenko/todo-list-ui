@@ -69,7 +69,7 @@
     </div>
   </div>
 
-  <button mat-icon-button class="todo-task-board-item-new" (click)="openTaskDialog()">
+  <button mat-icon-button class="todo-task-board-item-new" *ngIf="project" (click)="openTaskDialog()">
     <mat-icon color="warn" class="todo-task-board-item-new-icon">add_circle</mat-icon>
   </button>
 

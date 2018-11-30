@@ -22,9 +22,6 @@ export class TaskBoardComponent implements OnInit {
   constructor(private router: Router,
               private projectService: ProjectService,
               private dialog: MatDialog) {
-  }
-
-  ngOnInit() {
     this.router.events.subscribe(path => {
       if (path instanceof NavigationEnd) {
         const url = path.url;
@@ -32,13 +29,16 @@ export class TaskBoardComponent implements OnInit {
           const projectId = path.url.substr(path.url.lastIndexOf('/'));
           this.getProject(projectId);
         } else {
-          this.project = {};
-          this.toDo = {};
-          this.inProgress = {};
-          this.done = {};
+          this.project = null;
+          this.toDo = [];
+          this.inProgress = [];
+          this.done = [];
         }
       }
     });
+  }
+
+  ngOnInit() {
   }
 
   drop(event: CdkDragDrop<string[]>, status: string) {
@@ -51,7 +51,7 @@ export class TaskBoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      event.container.data[event.currentIndex].status = status;
+      (event.container.data[event.currentIndex] as any).status = status;
     }
 
     this.aggregateTasks(this.toDo, this.inProgress, this.done);

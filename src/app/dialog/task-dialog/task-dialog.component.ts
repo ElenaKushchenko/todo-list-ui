@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {Task} from "../../model/task";
 
 @Component({
-  selector: 'app-task-dialog',
+  selector: 'todo-task-dialog',
   templateUrl: './task-dialog.component.html',
   styleUrls: ['./task-dialog.component.scss']
 })

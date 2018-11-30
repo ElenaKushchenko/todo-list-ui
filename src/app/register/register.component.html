@@ -1,0 +1,26 @@
+﻿<div fxLayout fxFlexAlign="center" class="todo-register-container">
+  <div fxLayout="column" class="todo-register-form">
+    <h1 fxFlexAlign="center">Register</h1>
+    <form fxLayout="column">
+      <mat-form-field>
+        <input matInput name="login" [(ngModel)]="login" placeholder="login">
+        <mat-error *ngIf="!valid && !login">
+          Login is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" name="password" [(ngModel)]="password" placeholder="password">
+        <mat-error *ngIf="!valid && !password">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" name="email" [(ngModel)]="email" placeholder="email">
+        <mat-error *ngIf="!valid && !email">
+          Email is required
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <button mat-button color="primary" (click)="onSignUp()">Sign up</button>
+  </div>
+</div>

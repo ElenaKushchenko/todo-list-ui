@@ -1,6 +1,14 @@
-<mat-toolbar color="primary" class="todo-header">
-  <button mat-icon-button routerLink="/">
-    <img src="../../assets/checklist.svg" class="todo-logo" alt="Logo">
-  </button>
-  <span class="todo-name">ToDo List</span>
+<mat-toolbar color="primary" class="todo-header-container">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="todo-header">
+    <div>
+      <button mat-icon-button routerLink="/">
+        <img src="../../assets/checklist.svg" class="todo-logo" alt="Logo">
+      </button>
+      <span class="todo-name">ToDo List</span>
+    </div>
+    <div>
+      <span>{{getCurrentUser()}}</span>
+      <a mat-button routerLink="/" class="todo-header-logout" *ngIf="getCurrentUser()" (click)="logout()">Logout</a>
+    </div>
+  </div>
 </mat-toolbar>

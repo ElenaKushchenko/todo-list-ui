@@ -22,9 +22,6 @@ export class TaskBoardComponent implements OnInit {
   constructor(private router: Router,
               private projectService: ProjectService,
               private dialog: MatDialog) {
-  }
-
-  ngOnInit() {
     this.router.events.subscribe(path => {
       if (path instanceof NavigationEnd) {
         const url = path.url;
@@ -39,6 +36,9 @@ export class TaskBoardComponent implements OnInit {
         }
       }
     });
+  }
+
+  ngOnInit() {
   }
 
   drop(event: CdkDragDrop<string[]>, status: string) {
